@@ -35,37 +35,51 @@
       color: #fff;
     }
 
-    .navbar {
-      width: 100%;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      background: #fff;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
+.navbar {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* spreads items */
+  padding: 0 20px; /* reduced padding */
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap; /* allows wrapping on small screens */
+}
 
-    .navbar nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-    }
+.navbar .profile {
+  flex-shrink: 0;
+}
 
-    .navbar nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
+.navbar nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 0;
+}
 
-    .navbar nav ul li a:hover {
-      color: #ff523b;
-    }
+.navbar nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar nav ul li a:hover {
+  color: #ff523b;
+}
+
+.navbar > div.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 
     .profile {
       font-weight: 600;
@@ -161,45 +175,42 @@ body.dark-mode #about a {
 
 <body>
 
-  <div class="header">
-    <div class="container">
-      <div class="navbar">
-        <div class="profile d-flex align-items-center gap-2">
-          <i class="bi bi-person"></i> Manikandan
-        </div>
-
-        <nav>
-          <ul id="MenuItems" class="d-none d-md-flex">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#resume">Resume</a></li>
-           <li><a href="#achievements-certificates">Achievement</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-        <div class="d-flex align-items-center gap-3">
-          <a href="https://github.com/manikanda2004" target="_blank" class="text-dark fs-4">
-            <i class="bi bi-github"></i>
-          </a>
-          <a href="https://leetcode.com/Manikandan_2004" target="_blank" class="mx-2">
-            <img src="assets/leetcode.png" alt="LeetCode" style="width:24px; height:24px;">
-          </a>
-          <a href="https://www.linkedin.com/in/manikandan-r-11879128a/" target="_blank" class="text-primary fs-4">
-            <i class="bi bi-linkedin"></i>
-          </a>
-
-        </div>
-
-        <div class="d-flex align-items-center gap-2">
-          <button id="darkModeToggle" class="btn d-none d-md-inline">🌙 Dark Mode</button>
-          <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar"
-            aria-controls="mobileSidebar">
-            <i class="bi bi-list fs-2"></i>
-          </button>
-        </div>
-      </div>
-    </div>
+<div class="navbar">
+  <div class="profile d-flex align-items-center gap-2">
+    <i class="bi bi-person"></i> Manikandan
   </div>
+
+  <nav>
+    <ul id="MenuItems" class="d-none d-md-flex">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#achievements-certificates">Achievement</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="d-flex align-items-center gap-3">
+    <!-- Social Icons -->
+    <a href="https://github.com/manikanda2004" target="_blank" class="text-dark fs-4">
+      <i class="bi bi-github"></i>
+    </a>
+    <a href="https://leetcode.com/Manikandan_2004" target="_blank" class="mx-2">
+      <img src="assets/leetcode.png" alt="LeetCode" style="width:24px; height:24px;">
+    </a>
+    <a href="https://www.linkedin.com/in/manikandan-r-11879128a/" target="_blank" class="text-primary fs-4">
+      <i class="bi bi-linkedin"></i>
+    </a>
+
+    <!-- Dark Mode & Hamburger -->
+    <button id="darkModeToggle" class="btn d-none d-md-inline">🌙 Dark Mode</button>
+    <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar"
+      aria-controls="mobileSidebar">
+      <i class="bi bi-list fs-2"></i>
+    </button>
+  </div>
+</div>
+
 
    <!-- Offcanvas Mobile Sidebar -->
   <div class="offcanvas offcanvas-end custom-sidebar" tabindex="-1" id="mobileSidebar"
