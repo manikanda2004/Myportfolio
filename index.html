@@ -16,10 +16,23 @@
     emailjs.init("manikandan19ees21@gmail.com"); // Replace with your EmailJS User ID
   </script>
 
+
   <style>
     * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fff;
+      color: #000;
+      scroll-behavior: smooth;
+    }
+
+    body.dark-mode {
+      background: #121212;
+      color: #fff;
     }
 
     .navbar {
@@ -56,41 +69,44 @@
 
     .profile {
       font-weight: 600;
-      color: black;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    /* Dark Mode */
-    body {
-      background: #fff;
-      color: #000;
+    /* Offcanvas sidebar */
+    .offcanvas-body {
+      overflow-y: auto;
+      height: 100%;
     }
 
-    body.dark-mode {
-      background: #121212;
-      color: #fff;
+    .custom-sidebar .offcanvas-body ul li a {
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s;
     }
 
-    body.dark-mode #about,
-    body.dark-mode #about p,
-    body.dark-mode #about h2,
-    body.dark-mode #about h3 {
-      color: #fff !important;
+    .custom-sidebar .offcanvas-body ul li a:hover {
+      color: #ff523b;
     }
 
-    /* Profile pic zoom */
-    #about img:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    .custom-sidebar .offcanvas-body ul li a::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #ff523b;
+      border-radius: 50%;
+      margin-right: 15px;
     }
 
-    .rotate-animation {
-      animation: rotateOnce 1s linear;
+    section {
+      padding: 120px 0 60px 0;
     }
 
-    /* Reveal Animations */
+    /* Reveal animation */
     .reveal {
       opacity: 0;
       transform: translateY(50px);
@@ -102,141 +118,54 @@
       transform: translateY(0);
     }
 
-    .fade-left {
-      transform: translateX(-80px);
+    /* Profile hover */
+    #about img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .fade-right {
-      transform: translateX(80px);
-    }
+    /* Responsive navbar menu for mobile */
+   /* Mobile sidebar width */
+@media (max-width: 768px) {
+  .custom-sidebar.offcanvas-end {
+    width: 50% !important; /* Sidebar will take 50% of screen width */
+  }
 
-    .fade-up {
-      transform: translateY(80px);
-    }
+  .custom-sidebar .offcanvas-body {
+    padding-left: 15px;  /* Optional padding */
+    padding-right: 15px; /* Optional padding */
+  }
+}
+/* About section text in dark mode */
+body.dark-mode #about,
+body.dark-mode #about h1,
+body.dark-mode #about h4,
+body.dark-mode #about p,
+body.dark-mode #about a {
+  color: #fff !important;
+}
 
-    .fade-zoom {
-      transform: scale(0.9);
-    }
-
-    .fade-left.show,
-    .fade-right.show,
-    .fade-up.show,
-    .fade-zoom.show {
-      transform: none;
-      opacity: 1;
-    }
-
-    /* Custom width for mobile sidebar */
-    .custom-sidebar .offcanvas-body {
-      width: 50vw;
-      /* 50% of viewport width */
-    }
-
-    /* Optional: make the offcanvas itself 50% */
-    .custom-sidebar {
-      width: 50vw;
-      max-width: 50vw;
-    }
-
-
-    /* Mobile Navbar */
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: row;
-        justify-content: space-between;
-        height: 70px;
-        padding: 10px 20px;
-      }
-
-      nav ul#MenuItems {
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        /* align to right */
-        background: #fff;
-        flex-direction: column;
-        gap: 10px;
-        display: none;
-        padding: 10px;
-        border-radius: 6px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-      }
-
-      nav ul#MenuItems.show {
-        display: flex;
-      }
-
-      nav ul#MenuItems li a {
-        display: block;
-        padding: 8px 12px;
-      }
-
-      .navbar button#darkModeToggle {
-        margin-right: 10px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      nav ul#MenuItems {
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background: #fff;
-        flex-direction: column;
-        gap: 10px;
-        display: none;
-        /* hidden initially */
-        padding: 10px;
-        border-radius: 6px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-      }
-
-      nav ul#MenuItems.show {
-        display: flex;
-        /* visible when toggled */
-      }
-
-      nav ul#MenuItems li a {
-        display: block;
-        padding: 8px 12px;
-      }
-    }
-
-    @media (max-width: 576px) {
-
-      .col-md-4,
-      .col-md-3 {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- Navbar -->
   <div class="header">
     <div class="container">
       <div class="navbar">
-        <!-- Profile Name -->
         <div class="profile d-flex align-items-center gap-2">
           <i class="bi bi-person"></i> Manikandan
         </div>
 
-        <!-- Desktop Menu -->
         <nav>
           <ul id="MenuItems" class="d-none d-md-flex">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#resume">Resume</a></li>
-            <li><a href="#achievement">Achievement</a></li>
+           <li><a href="#achievements-certificates">Achievement</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <!-- Social Links -->
         <div class="d-flex align-items-center gap-3">
           <a href="https://github.com/manikanda2004" target="_blank" class="text-dark fs-4">
             <i class="bi bi-github"></i>
@@ -250,10 +179,8 @@
 
         </div>
 
-        <!-- Right Corner Buttons -->
         <div class="d-flex align-items-center gap-2">
           <button id="darkModeToggle" class="btn d-none d-md-inline">🌙 Dark Mode</button>
-          <!-- Mobile Hamburger -->
           <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar"
             aria-controls="mobileSidebar">
             <i class="bi bi-list fs-2"></i>
@@ -263,6 +190,7 @@
     </div>
   </div>
 
+   <!-- Offcanvas Mobile Sidebar -->
   <div class="offcanvas offcanvas-end custom-sidebar" tabindex="-1" id="mobileSidebar"
     aria-labelledby="mobileSidebarLabel">
     <div class="offcanvas-header">
@@ -270,18 +198,21 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
+      <div class="text-center mb-4">
+        <img src="./assets/Manikandan.jpg.jpg" alt="Manikandan Profile" class="rounded-circle"
+          style="width: 100px; height: 100px; object-fit: cover; border: 2px solid #ff523b;">
+      </div>
       <ul class="list-unstyled">
         <li><a href="#about" class="d-block py-2" data-bs-dismiss="offcanvas">About</a></li>
         <li><a href="#projects" class="d-block py-2" data-bs-dismiss="offcanvas">Projects</a></li>
         <li><a href="#resume" class="d-block py-2" data-bs-dismiss="offcanvas">Resume</a></li>
-        <li><a href="#achievement" class="d-block py-2" data-bs-dismiss="offcanvas">Achievement</a></li>
+        <li><a href="#achievements-certificates" class="d-block py-2" data-bs-dismiss="offcanvas">Achievement</a>
+        </li>
         <li><a href="#contact" class="d-block py-2" data-bs-dismiss="offcanvas">Contact</a></li>
       </ul>
     </div>
   </div>
 
-
-  <!-- About Section -->
   <div class="container reveal fade-left" id="about" style="margin-top: 120px;">
     <div class="row align-items-center">
       <div class="col-md-6">
@@ -290,13 +221,10 @@
           style="font-size: 48px; background: linear-gradient(to right, #ff416c, #8e2de2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
           Manikandan
         </h1>
-        <p class="mt-4 fs-5 text-muted"> I am an Electrical and Electronics Engineering graduate with a strong
-          foundation in programming and software development. Skilled in C++, Java, SQL, HTML5, CSS3, and JavaScript,
-          with a passion for building efficient solutions and problem-solving. Continuously expanding my knowledge in
-          modern technologies and eager to contribute to team success through both my existing and growing skill set.
+        <p class="mt-4 fs-5 text-muted"> I am an Electrical and Electronics Engineering graduate with a strong foundation in programming and software development. Skilled in C++, Java, SQL, Oracle, HTML5, CSS3, JavaScript, Bootstrap, JDBC, Servlets, Hibernate, and Spring Boot, with a passion for building efficient solutions and problem-solving. Continuously expanding my knowledge in modern technologies and eager to contribute to team success through both my existing and growing skill set.
         </p>
         <div class="mt-4">
-          <a href="Resume/manikandan.pdf" download class="btn btn-danger rounded-pill px-4 py-2 me-3 fw-bold">Download
+          <a href="Resume/Manikandan R.pdf" download class="btn btn-danger rounded-pill px-4 py-2 me-3 fw-bold">Download
             Resume</a>
           <a href="#contact" class="btn btn-outline-danger rounded-pill px-4 py-2 fw-bold">Contact Me</a>
         </div>
@@ -308,15 +236,13 @@
     </div>
   </div>
 
-  <!-- Projects Section -->
-  <div class="container mt-5 reveal fade-right" id="projects">
+    <div class="container mt-5 reveal fade-right" id="projects">
     <div class="text-center mb-5">
       <h2 class="fw-bold text-primary">Projects</h2>
       <p class="text-muted">Some of the work I've done</p>
     </div>
 
     <div class="row g-4">
-      <!-- Project 1 -->
       <div class="col-md-4">
         <div class="card shadow h-100">
           <img src="./assets/ecommerence.img.png" class="card-img-top" alt="E-commerce Website">
@@ -326,13 +252,12 @@
               Online clothing store built using HTML, CSS, JavaScript, and Bootstrap.
               Features include product listings, shopping cart, and responsive design.
             </p>
-            <a href="https://red-store-ecommerce-5ym2ferj5-manikandans-projects-6f603c9b.vercel.app" download
+            <a href="https://github.com/manikanda2004/RedStore-Ecommerce.git" download
               class="btn btn-danger rounded-pill px-4 download-btn">Download</a>
           </div>
         </div>
       </div>
 
-      <!-- Project 2 -->
       <div class="col-md-4">
         <div class="card shadow h-100">
           <img src="./assets/portfolio.jpg.png" class="card-img-top" alt="Portfolio Website">
@@ -347,7 +272,6 @@
         </div>
       </div>
 
-      <!-- Project 3 -->
       <div class="col-md-4">
         <div class="card shadow h-100">
           <img src="assets/animal.jpg" class="card-img-top" alt="Animal Detection and Alert System">
@@ -362,16 +286,61 @@
           </div>
         </div>
       </div>
+
+      <div class="col-md-4">
+        <div class="card shadow h-100">
+          <img src="assets/StudentManagement.png" class="card-img-top" alt="Student Management System">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">Student Management System</h5>
+            <p class="card-text">
+              A Java-based student management system built with JDBC and Servlets.
+              Provides CRUD operations for student records and database connectivity.
+            </p>
+            <a href="https://github.com/manikanda2004/StudentDataManagement-JDBC-Servlet" download
+              class="btn btn-danger rounded-pill px-4 download-btn">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow h-100">
+          <img src="assets/SPS.png" class="card-img-top" alt="Stone Paper Scissor Game">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">Stone Paper Scissor Game</h5>
+            <p class="card-text">
+              A fun interactive game created using HTML, CSS, and JavaScript.
+              Allows players to compete against the computer with real-time score tracking.
+            </p>
+            <a href="https://github.com/manikanda2004/stone-paper-scissor-game" download
+              class="btn btn-danger rounded-pill px-4 download-btn">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow h-100">
+          <img src="assets/login.png" class="card-img-top" alt="Login Page">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">Login Page</h5>
+            <p class="card-text">
+              A modern login page designed with HTML, CSS, JavaScript, and Bootstrap.
+              Features responsive UI, form validation, and user-friendly design.
+            </p>
+            <a href="https://github.com/manikanda2004/login-page" download
+              class="btn btn-danger rounded-pill px-4 download-btn">Download</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Skills Section with Equal Cards -->
+
   <div class="container my-5 reveal fade-right" id="skills">
     <h2 class="text-center fw-bold mb-5">Skills</h2>
 
     <div class="row g-4 text-center">
 
-      <!-- C -->
       <div class="col-6 col-md-3">
         <div class="card h-100 shadow-sm border-0 d-flex align-items-center justify-content-center p-3">
           <img src="assets/C.jpeg" alt="C" width="80" height="80" class="rounded-circle mb-3">
@@ -379,7 +348,6 @@
         </div>
       </div>
 
-      <!-- C++ -->
       <div class="col-6 col-md-3">
         <div class="card h-100 shadow-sm border-0 d-flex align-items-center justify-content-center p-3">
           <img src="assets/C++.jpeg" alt="C++" width="80" height="80" class="rounded-circle mb-3">
@@ -387,7 +355,6 @@
         </div>
       </div>
 
-      <!-- Java -->
       <div class="col-6 col-md-3">
         <div class="card h-100 shadow-sm border-0 d-flex align-items-center justify-content-center p-3">
           <img src="assets/java.jpeg" alt="Java" width="80" height="80" class="rounded-circle mb-3">
@@ -395,7 +362,6 @@
         </div>
       </div>
 
-      <!-- HTML -->
       <div class="col-6 col-md-3">
         <div class="card h-100 shadow-sm border-0 d-flex align-items-center justify-content-center p-3">
           <img src="assets/html.png" alt="HTML" width="80" height="80" class="rounded-circle mb-3">
@@ -403,7 +369,6 @@
         </div>
       </div>
 
-      <!-- CSS3 -->
       <div class="col-6 col-md-3">
         <div class="card h-100 shadow-sm border-0 d-flex align-items-center justify-content-center p-3">
           <img src="assets/css.jpeg" alt="CSS3" width="80" height="80" class="rounded-circle mb-3">
@@ -411,7 +376,6 @@
         </div>
       </div>
 
-      <!-- JavaScript -->
       <div class="col-6 col-md-3">
         <div class="card h-100 shadow-sm border-0 d-flex align-items-center justify-content-center p-3">
           <img src="assets/js.jpeg" alt="JavaScript" width="80" height="80" class="rounded-circle mb-3">
@@ -419,7 +383,6 @@
         </div>
       </div>
 
-      <!-- SQL -->
       <div class="col-6 col-md-3">
         <div class="card h-100 shadow-sm border-0 d-flex align-items-center justify-content-center p-3">
           <img src="assets/sql.jpeg" alt="SQL" width="80" height="80" class="rounded-circle mb-3">
@@ -427,7 +390,6 @@
         </div>
       </div>
 
-      <!-- GitHub -->
       <div class="col-6 col-md-3">
         <div class="card h-100 shadow-sm border-0 d-flex align-items-center justify-content-center p-3">
           <img src="assets/github.jpeg" alt="GitHub" width="80" height="80" class="rounded-circle mb-3">
@@ -443,7 +405,6 @@
     <h2 class="text-center fw-bold mb-5">Resume</h2>
     <div class="row g-4">
 
-      <!-- Education Column -->
       <div class="col-md-6">
         <h3 class="fw-bold text-danger mb-4">Education</h3>
 
@@ -466,7 +427,6 @@
         </div>
       </div>
 
-      <!-- Experience Column -->
       <div class="col-md-6">
         <h3 class="fw-bold text-danger mb-4">Experience</h3>
 
@@ -492,51 +452,63 @@
 
     </div>
   </div>
-  <div class="container my-5 reveal fade-zoom" id="achievement">
-    <h2 class="text-center fw-bold mb-5">Achievements</h2>
-    <div class="row g-4">
+  <div class="container my-5 reveal fade-zoom" id="achievements-certificates">
 
-      <div class="col-md-6">
-        <div class="card shadow-sm p-3">
-          <h5 class="fw-bold text-danger">Flipkart Grid 5.0</h5>
-          <p class="mb-0">Qualified in Software Development Track conducted by Flipkart (2023).</p>
-        </div>
+  <h2 class="text-center fw-bold mb-5">Achievements & Certificates</h2>
+  <div class="row g-4">
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="fw-bold text-danger">Flipkart Grid 5.0</h5>
+        <p class="mb-0">Qualified in the Software Development Track conducted by Flipkart (2023).</p>
       </div>
-
-      <div class="col-md-6">
-        <div class="card shadow-sm p-3">
-          <h5 class="fw-bold text-danger">Coding Practice</h5>
-          <p class="mb-0">Solved 150+ coding problems on LeetCode to strengthen DSA & algorithms.</p>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="card shadow-sm p-3">
-          <h5 class="fw-bold text-danger">C Programming</h5>
-          <p class="mb-0">Completed certification course on Coursera.</p>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="card shadow-sm p-3">
-          <h5 class="fw-bold text-danger">C++</h5>
-          <p class="mb-0">Earned certification from SoloLearn.</p>
-        </div>
-      </div>
-
     </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="fw-bold text-danger">LeetCode Practice</h5>
+        <p class="mb-0">Solved 150+ coding challenges on LeetCode to strengthen problem-solving and algorithmic skills.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="fw-bold text-danger">C Programming Fundamentals</h5>
+        <p class="mb-0">Successfully completed a certification course on Coursera, covering core programming concepts in C.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="fw-bold text-danger">C++ Programming</h5>
+        <p class="mb-0">Earned certification from SoloLearn by completing a hands-on course in C++ programming.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="fw-bold text-danger">Java Programming</h5>
+        <p class="mb-0">Completed a structured course on Java Programming with Scaler, focusing on OOP and advanced concepts.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="fw-bold text-danger">SQL Developer</h5>
+        <p class="mb-0">Achieved certification from Simplilearn after completing training in SQL queries, joins, and database management.</p>
+      </div>
+    </div>
+
   </div>
-  <!-- Contact Me Section -->
+</div>
   <div class="container my-5" id="contact">
     <h2 class="text-center fw-bold mb-5">Contact Me</h2>
 
     <form id="contactForm" action="https://formsubmit.co/manikandan19ees21@gmail.com" method="POST" class="row g-3">
 
-      <!-- Hidden inputs for FormSubmit -->
-      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_captcha" value="false"> 
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_subject" value="New Contact Form Submission!">
-      <!-- Optional: Redirect after submit -->
       <input type="hidden" name="_next" value="thankyou.html">
 
       <div class="col-md-6">
@@ -616,11 +588,8 @@
       elements.forEach(el => observer.observe(el));
     });
 
-    // Mobile menu toggle
-    document.getElementById("menuToggle").addEventListener("click", () => {
-      const menu = document.getElementById("MenuItems");
-      menu.classList.toggle("show");
-    });
+    // NOTE: The menuToggle code was removed as it was unused. 
+    // The Bootstrap hamburger button works with data-bs-toggle attributes automatically.
   </script>
 
 </body>
